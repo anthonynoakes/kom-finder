@@ -37,10 +37,15 @@ stravaOathHandshake = (code) =>
         if (!error && response.statusCode == 200) {
             console.log(body);
             bearer = body.token_type + " " + body.access_token
+            console.log(`${JSON.stringify(body)}`)
             return body.access_token
         }
       }
   );
+
+  
+  console.log(`Listening on ${JSON.stringify(query)}`)
+
 
   return "success"
 }
