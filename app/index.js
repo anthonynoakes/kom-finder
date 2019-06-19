@@ -14,7 +14,7 @@ var app = express()
 render = (request) => {
   var url_parts = url.parse(request.url, true);
   var query = url_parts.query;
-  console.log(`Listening on ${JSON.stringify(query)}`)
+  console.log(`query ${JSON.stringify(query)}`)
 
   return stravaOathHandshake(query.code);
 }
@@ -39,6 +39,10 @@ stravaOathHandshake = (code) =>
             bearer = body.token_type + " " + body.access_token
             console.log(`${JSON.stringify(body)}`)
             return body.access_token
+        } else
+        {
+           console.log(`Error ${JSON.stringify(error)}`)           
+           console.log(`Error Response ${JSON.stringify(response)}`)
         }
       }
   );
