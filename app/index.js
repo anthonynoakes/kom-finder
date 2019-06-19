@@ -41,4 +41,6 @@ stravaOathHandshake = (code) =>
         }
       }
   );
+
+  return "success"
 }
