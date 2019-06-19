@@ -44,7 +44,7 @@ stravaOathHandshake = (code) =>
   );
 
   
-  console.log(`Listening on ${JSON.stringify(query)}`)
+  console.log(`Hello`)
 
 
   return "success"
