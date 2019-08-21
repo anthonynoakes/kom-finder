@@ -7,16 +7,20 @@ const PORT = process.env.PORT || 5000
 
 var app = express()
   .use(express.static(path.join(__dirname, 'public')))
-  .set('views', path.join(__dirname, 'views'))
-  .get('/', (req, res) => res.send(render(req)))
+  .use(express.static(path.join(__dirname, 'views')))
+  //.set('views', path.join(__dirname, 'views'))
+  // .set('view engine', 'ejs')
+  .get('/', (req, res) => res.render('pages/index'))
+  //.get('/', (req, res) => res.send(render(res, req)))
   .listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
-render = (request) => {
-  var url_parts = url.parse(request.url, true);
+render = (res, req) => {
+  var url_parts = url.parse(req.url, true);
   var query = url_parts.query;
   console.log(`query ${JSON.stringify(query)}`)
 
-  return stravaOathHandshake(query.code);
+  return res.sendFile('index.html', {root : __dirname + '/views/pages'}) //, {data: "txt-data"})
+  // return stravaOathHandshake(query.code);
 }
 
 stravaOathHandshake = (code) =>
